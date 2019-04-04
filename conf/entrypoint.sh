@@ -1,6 +1,6 @@
 #!/bin/bash
 set -e
-echo ENTRY POINT
+. ./env.sh
 # VNC default no password
 export X11VNC_AUTH="-nopw"
 
@@ -23,12 +23,9 @@ done
 
 # override above if VNC_PASSWORD env var is set (insecure!)
 if [[ "$PASSWORD" != "" ]]; then
-  export X11VNC_AUTH="-passwd $PASSWORD"
+  echo $PASSWORD > /tmp/password
+  export X11VNC_AUTH="-rfbauth /tmp/password"
+  # export X11VNC_AUTH="-passwd $PASSWORD"
 fi
-
-[ -z $X11_W ] && X11_W=1920
-[ -z $X11_H ] && X11_H=1080
-export X11_W
-export X11_H
 
 exec "$@"

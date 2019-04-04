@@ -5,8 +5,6 @@
 [ -f /run/secrets/URL ] && URL="$(cat /run/secrets/URL)"
 URL="${URL:-https://www.docker.com/}"
 VNC_SERVER_PASSWORD=${VNC_SERVER_PASSWORD:-/run/secrets/vncpasswd}
-#X11_W=${X11_W:-1920}
-#X11_H=${X11_H:-1080}
 
 main() {
     log_i "Starting xvfb virtual display..."

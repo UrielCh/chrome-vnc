@@ -49,6 +49,8 @@ ADD conf/ /
 ADD conf/ /
 RUN chmod +x /*.sh
 VOLUME ["/home/chrome"]
+
 EXPOSE 5900
+
 ENTRYPOINT ["/bin/bash", "/entrypoint.sh"]
 CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]
