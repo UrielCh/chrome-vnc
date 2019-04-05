@@ -42,7 +42,10 @@ RUN  set -ex;\
  mv /opt/plugin /home/chrome/plugin;\
  mv /opt/webRobotJS /home/chrome/webRobotJS
 
-ADD conf/ /
+RUN set -ex;\
+ apt-get update;\
+ apt-get install -y --no-install-recommends iputils-ping net-tools;\
+ rm -rf /var/cache/* /var/log/apt/* /var/lib/apt/lists/*
 
 # RUN apt-get install -y xvfb && echo rm -rf /tmp/*
 #RUN apt-get update && apt-get install -y  && dpkg -i /tmp/google-chrome-stable_current_amd64.deb
