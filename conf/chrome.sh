@@ -3,8 +3,11 @@
 [ -f /run/secrets/URL ] && URL="$(cat /run/secrets/URL)"
 URL="${URL:-https://www.docker.com/}"
 # /usr/bin/google-chrome-stable
-/usr/bin/chromium-browser \
+/usr/bin/chromium-browser ${EXTRA_CHROME_OPTION} \
+ --purge-memory-button \
  --clear-token-service \
+ --disable-3d-apis \
+ --disable-accelerated-video \
  --disable-background-mode \
  --disable-gpu \
  --disable-infobars \
