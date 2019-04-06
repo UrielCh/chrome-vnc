@@ -21,6 +21,10 @@ docker build -f 1.Dockerfile  -t urielch/chrome-vnc:$(dpkg --print-architecture)
 docker run -p 5900:5900 --name chrome urielch/chrome-vnc:$(dpkg --print-architecture)
 docker exec -it chrome bash
 docker rm -f chrome
+
+
+docker build -t urielch/chrome-vnc:latest .
+
 ```
 
 
