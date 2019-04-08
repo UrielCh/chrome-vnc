@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 set -e
 . ./env.sh
 # VNC default no password
@@ -8,13 +8,7 @@ export X11VNC_AUTH="-nopw"
 #echo "chrome" | vncpasswd -f > /opt/vncpasswd
 
 # look for VNC password file in order (first match is used)
-passwd_files=(
-  /home/chrome/.vnc/passwd
-  /run/secrets/vncpasswd
-#  /opt/vncpasswd
-)
-
-for passwd_file in ${passwd_files[@]}; do
+for passwd_file in /home/chrome/.vnc/passwd /run/secrets/vncpasswd; do
   if [[ -f ${passwd_file} ]]; then
     export X11VNC_AUTH="-rfbauth ${passwd_file}"
     break
