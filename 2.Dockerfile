@@ -14,7 +14,7 @@ ADD res/setup_10.x /tmp/
 RUN \
  sed -i s@http://archive\.ubuntu\.com/ubuntu/@mirror://mirrors.ubuntu.com/mirrors.txt@ /etc/apt/sources.list &&\
  apt-get update && apt-get install -y --no-install-recommends apt-utils gnupg2 &&\
- cat /tmp/setup_10.x | bash - &&\
+ cat /tmp/setup_10.x | sh - &&\
  apt-get update &&\
  apt-get install -y curl xvfb nodejs pulseaudio x11vnc xdg-utils libnss3 wget libnspr4 libcairo2 libatk1.0-0 fonts-liberation libappindicator3-1 libatk-bridge2.0-0 libpango-1.0-0 fluxbox wmctrl chromium-browser &&\
  apt-get clean &&\
@@ -33,6 +33,6 @@ RUN chmod +x /*.sh
 USER chrome
 EXPOSE 5900
 
-# ENTRYPOINT ["/bin/bash", "/entrypoint.sh"]
+# ENTRYPOINT ["/bin/sh", "/entrypoint.sh"]
 
 ENTRYPOINT ["/chomevnc.sh"]

@@ -2,32 +2,22 @@ FROM ubuntu:18.10
 LABEL maintainer="urielCh <admin@uriel.ovh>"
 
 ENV DEBIAN_FRONTEND="noninteractive" \
-    LC_ALL="C.UTF-8" \
-    LANG="en_US.UTF-8" \
-    LANGUAGE="en_US.UTF-8"
-
-# sed -i s@http://archive\.ubuntu\.com/ubuntu/@mirror://mirrors.ubuntu.com/mirrors.txt@ /etc/apt/sources.list;\
+    LC_ALL="C.UTF-8"
 
 RUN set -ex;\
  apt-get update;\
  echo ;\
  echo installing other packages;\
  echo ;\
- optsDeps="iputils-ping net-tools apt-utils";\
- apt-get install -y xvfb fonts-takao pulseaudio supervisor x11vnc xdg-utils libnss3 libnspr4 libcairo2 libatk1.0-0 fonts-liberation libappindicator3-1 libatk-bridge2.0-0 libpango-1.0-0 wget $optsDeps chromium-browser;\
+ optsDeps="iputils-ping net-tools";\
+ apt-get install -y xvfb pulseaudio supervisor x11vnc wget $optsDeps chromium-browser;\
  rm -rf /var/cache/* /var/log/apt/* /var/lib/apt/lists/*;
-#  ca-certificates
-
-#RUN set -ex;\
-# apt-get update;\
-# commonsDeps="curl wget";\
-# optsDeps="iputils-ping net-tools apt-utils";\
-# apt-get install -y $commonsDeps $optsDeps chromium-browser;\
-# rm -rf /var/cache/* /var/log/apt/* /var/lib/apt/lists/*;
+ # pulseaudio 
+ # xdg-utils libnss3 libnspr4 libcairo2 libatk1.0-0 fonts-liberation libappindicator3-1 libatk-bridge2.0-0 libpango-1.0-0 fonts-takao
 
 RUN set -ex;\
  echo setup node; \
- wget -qO- https://deb.nodesource.com/setup_10.x | /bin/bash -;\
+ wget -qO- https://deb.nodesource.com/setup_10.x | /bin/sh -;\
  apt-get install -y nodejs;\
  rm -rf /var/cache/* /var/log/apt/* /var/lib/apt/lists/*;
 
@@ -47,6 +37,7 @@ RUN chmod +x /*.sh
 VOLUME ["/home/chrome"]
 
 EXPOSE 5900
+USER root
 
-ENTRYPOINT ["/bin/bash", "/entrypoint.sh"]
+ENTRYPOINT ["/bin/sh", "/entrypoint.sh"]
 CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]

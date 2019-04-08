@@ -1,10 +1,6 @@
 FROM alpine:3.9
 LABEL maintainer="urielCh <admin@uriel.ovh>"
 
-ENV LC_ALL="C.UTF-8" \
-    LANG="en_US.UTF-8" \
-    LANGUAGE="en_US.UTF-8"
-
 RUN apk add --no-cache xvfb pulseaudio supervisor x11vnc xdg-utils wget chromium nodejs
 
 RUN set -ex;\
@@ -20,6 +16,7 @@ RUN chmod +x /*.sh
 VOLUME ["/home/chrome"]
 
 EXPOSE 5900
+USER root
 
 ENTRYPOINT ["/bin/sh", "/entrypoint.sh"]
 CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]
