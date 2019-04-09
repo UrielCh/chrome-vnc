@@ -17,7 +17,7 @@ RUN set -ex;\
 
 RUN set -ex;\
  echo setup node; \
- wget -qO- https://deb.nodesource.com/setup_10.x | /bin/sh -;\
+ wget -qO- https://deb.nodesource.com/setup_10.x | /bin/bash -;\
  apt-get install -y nodejs;\
  rm -rf /var/cache/* /var/log/apt/* /var/lib/apt/lists/*;
 
