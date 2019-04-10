@@ -2,6 +2,20 @@
 
 A multi-arch Docker chome VNC
 
+## Usage:
+
+### evironement variable
+* X11_W: screen Width
+* X11_H: screen Heigth
+* EXTRA_CHROME_OPTION: add extra parameter to chrome
+* URL: page to open
+* PASSWORD: vnc password
+* EVAL_URL: evaluate url before using it
+
+### secrets
+* URL: page to open
+* vncpasswd: vnc password
+
 ## Build Steps
 
 ### Build and test images
@@ -41,10 +55,18 @@ edit ~/.docker/config.json add:
 ```
 
 ```sh
-docker rmi urielch/chrome-vnc:latest
-docker manifest inspect urielch/chrome-vnc:latest
-docker manifest create --amend urielch/chrome-vnc:latest urielch/chrome-vnc:amd64 urielch/chrome-vnc:armhf
-docker manifest --purge push urielch/chrome-vnc:latest
+
+docker rmi urielch/chrome-vnc:ubuntu
+docker rmi urielch/chrome-vnc:alpine
+docker manifest inspect urielch/chrome-vnc:ubuntu
+docker manifest inspect urielch/chrome-vnc:alpine
+
+docker manifest create --amend urielch/chrome-vnc:ubuntu urielch/chrome-vnc:ubuntu-amd64 urielch/chrome-vnc:ubuntu-armhf
+
+docker manifest create --amend urielch/chrome-vnc:alpine urielch/chrome-vnc:alpine-amd64 urielch/chrome-vnc:alpine-armhf
+
+docker manifest push --purge urielch/chrome-vnc:ubuntu
+docker manifest push --purge urielch/chrome-vnc:alpine
 ```
 
 ### Test multi arch image

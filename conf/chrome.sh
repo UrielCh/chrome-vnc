@@ -2,6 +2,9 @@
 
 [ -f /run/secrets/URL ] && URL="$(cat /run/secrets/URL)"
 URL="${URL:-https://www.docker.com/}"
+
+if [ ! -z "$EVAL_URL" ]; then URL=$(eval "${URL}"); fi;
+
 # /usr/bin/google-chrome-stable
 /usr/bin/chromium-browser ${EXTRA_CHROME_OPTION} \
  --purge-memory-button \

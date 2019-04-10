@@ -1,5 +1,5 @@
 #!/bin/sh
-echo Knowns env variables: X11_W, X11_H, EXTRA_CHROME_OPTION, URL, PASSWORD
+echo Knowns env variables: X11_W, X11_H, EXTRA_CHROME_OPTION, URL, PASSWORD, EVAL_URL
 echo Knowns secret: URL, vncpasswd
 echo 
 
