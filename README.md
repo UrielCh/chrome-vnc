@@ -21,15 +21,15 @@ A multi-arch Docker chome VNC
 ### Build and test images
 
 ```sh
-docker build -f ubuntu.Dockerfile -t urielch/chrome-vnc:ubuntu-$(dpkg --print-architecture) .
-docker build -f alpine.Dockerfile -t urielch/chrome-vnc:alpine-$(dpkg --print-architecture) .
+docker build -f ubuntu.Dockerfile -t urielch/chrome-vnc:ubuntu-$(uname -m) .
+docker build -f alpine.Dockerfile -t urielch/chrome-vnc:alpine-$(uname -m) .
 ```
 
 ### try it on a hevy website
 
 ```sh
-docker run -d --rm -p 5900:5900 -e EXTRA_CHROME_OPTION="--lang=fr-FR,fr" -e X11_W=1024 -e X11_H=768 -e LANG="fr_FR.UTF-8" -e LC_ALL="fr_FR.UTF-8" -e URL=https://maps.google.fr --name chrome-ubu urielch/chrome-vnc:ubuntu-$(dpkg --print-architecture)
-docker run -d --rm -p 5901:5900 -e EXTRA_CHROME_OPTION="--lang=fr-FR,fr" -e X11_W=1024 -e X11_H=768 -e LANG="fr_FR.UTF-8" -e LC_ALL="fr_FR.UTF-8" -e URL=https://maps.google.fr --name chrome-alp urielch/chrome-vnc:alpine-$(dpkg --print-architecture)
+docker run -d --rm -p 5900:5900 -e EXTRA_CHROME_OPTION="--lang=fr-FR,fr" -e X11_W=1024 -e X11_H=768 -e LANG="fr_FR.UTF-8" -e LC_ALL="fr_FR.UTF-8" -e URL=https://maps.google.fr --name chrome-ubu urielch/chrome-vnc:ubuntu-$(uname -m)
+docker run -d --rm -p 5901:5900 -e EXTRA_CHROME_OPTION="--lang=fr-FR,fr" -e X11_W=1024 -e X11_H=768 -e LANG="fr_FR.UTF-8" -e LC_ALL="fr_FR.UTF-8" -e URL=https://maps.google.fr --name chrome-alp urielch/chrome-vnc:alpine-$(uname -m)
 ```
 
 ```sh
@@ -41,8 +41,8 @@ xvnc4viewer 127.0.0.1:1 &
 
 ```sh
 docker login
-docker push urielch/chrome-vnc:ubuntu-$(dpkg --print-architecture)
-docker push urielch/chrome-vnc:alpine-$(dpkg --print-architecture)
+docker push urielch/chrome-vnc:ubuntu-$(uname -m)
+docker push urielch/chrome-vnc:alpine-$(uname -m)
 ```
 
 ### Update multiArch Docker tag
