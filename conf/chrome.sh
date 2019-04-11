@@ -5,6 +5,9 @@ URL="${URL:-https://www.docker.com/}"
 
 if [ ! -z "$EVAL_URL" ]; then URL=$(eval "echo ${URL}"); fi;
 
+rm -rf $HOME/.cache/chromium
+rm -rf $HOME/.config/chromium
+
 # /usr/bin/google-chrome-stable
 /usr/bin/chromium-browser ${EXTRA_CHROME_OPTION} \
  --purge-memory-button \
