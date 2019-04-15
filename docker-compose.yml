@@ -1,4 +1,4 @@
-version: '3'
+version: '2.4'
 services:
   web:
     build: 
@@ -13,6 +13,5 @@ services:
      - LANG=fr_FR.UTF-8
      - LC_ALL=fr_FR.UTF-8
      - URL=https://maps.google.fr
-     - URL2=https://maps.google.fr
      
 
