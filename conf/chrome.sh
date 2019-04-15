@@ -8,6 +8,8 @@ if [ ! -z "$EVAL_URL" ]; then URL=$(eval "echo ${URL}"); fi;
 rm -rf $HOME/.cache/chromium
 rm -rf $HOME/.config/chromium
 
+dbus-uuidgen > /etc/machine-id
+
 # /usr/bin/google-chrome-stable
 /usr/bin/chromium-browser ${EXTRA_CHROME_OPTION} \
  --purge-memory-button \
@@ -19,6 +21,7 @@ rm -rf $HOME/.config/chromium
  --disable-infobars \
  --disable-metrics \
  --disable-preconnect \
+ --disable-software-rasterizer \
  --disable-speech-api \
  --disable-sync \
  --disable-sync-app-list \

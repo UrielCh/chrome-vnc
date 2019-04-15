@@ -1,0 +1,18 @@
+version: '3'
+services:
+  web:
+    build: 
+      context: .
+      dockerfile: alpine.Dockerfile
+    ports:
+     - "5901:5900"
+    environment:
+     - EXTRA_CHROME_OPTION=--lang=fr-FR,fr
+     - X11_W=1024
+     - X11_H=768
+     - LANG=fr_FR.UTF-8
+     - LC_ALL=fr_FR.UTF-8
+     - URL=https://maps.google.fr
+     - URL2=https://maps.google.fr
+     
+

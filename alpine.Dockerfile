@@ -1,7 +1,7 @@
 FROM alpine:3.9
 LABEL maintainer="urielCh <admin@uriel.ovh>"
 
-RUN apk add --no-cache xvfb pulseaudio supervisor x11vnc xdg-utils wget chromium nodejs
+RUN apk add --no-cache xvfb pulseaudio supervisor x11vnc xdg-utils wget chromium nodejs dbus ttf-dejavu
 
 RUN set -ex;\
  adduser -D -u 1000 chrome pulse-access;\
